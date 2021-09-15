@@ -5,14 +5,13 @@
 }
 
 .card-category {
-  background-color: transparent;
+  background-color: white;
   height: 180px;
   color: rgb(31, 29, 29);
   font-size: 12px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  position: relative;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  // position: relative;
 }
 
 .card-details {
@@ -20,15 +19,16 @@
   justify-content: space-between;
   align-items: center;
   font-size: 11px;
+
+  h4 {
+    font-size: 18px;
+  }
 }
 
 .card-price {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   font-size: 18px;
-  position: absolute;
-  right: 10px;
+  // position: absolute;
+  left: 20px;
   bottom: 16px;
 }
 

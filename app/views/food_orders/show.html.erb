@@ -1,0 +1,8 @@
+<div style="background-color: white">
+  <div class="container py-3">
+    <%= link_to "Home", "/" %> > <%= link_to "Restaurants", "/restaurants#index" %> > <%= @restaurant.name %>
+    <h1 class="mt-3"><%= @restaurant.name %></h1>
+    <p>Operating Hours <%= @restaurant.opening_time.strftime('%I:%M %p') %> - <%= @restaurant.closing_time.strftime('%I:%M %p') %></p>
+  </div>
+</div>
+<%# this is a placeholder %>
