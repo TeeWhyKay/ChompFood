@@ -1,3 +1,5 @@
+require 'open-uri'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -7,18 +9,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "clearing db"
-Restaurant.destroy_all
 Food.destroy_all
+Restaurant.destroy_all
 
 puts "seeding db with restaurants"
-20.times do
+
+url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&language=en&apikey=ytxKCmRhV2kPY8fEpKXN63SuuQSkVmPw"
+address_serialized = URI.open(url).read
+address_parsed = JSON.parse(address_serialized)
+
+
+20.times do |index|
+  address_street = address_parsed["data"]["results"][index]["address"]
+  full_address = "#{address_street["block"]} #{address_street["streetName"]}, Singapore"
+
   Restaurant.create(
-    name: Faker::Restaurant.name,
-    lat: Faker::Address.latitude,
-    long: Faker::Address.longitude,
-    opening_time: ["7:00AM", "8:00AM", "9:00AM", "10:00AM", "11:00AM"].sample,
-    closing_time: ["6:00PM", "7:00PM", "8:00PM", "9:00PM", "10:00PM", "11:00PM"].sample
+    name: address_parsed["data"]["results"][index]["name"],
+    address: full_address,
+    longitude: address_parsed["data"]["results"][index]["location"]["longitude"],
+    latitude: address_parsed["data"]["results"][index]["location"]["latitude"],
+    opening_time: address_parsed["data"]["results"][index]["businessHour"].first["openTime"],
+    closing_time: address_parsed["data"]["results"][index]["businessHour"].first["closeTime"]
   )
+  puts "seeded #{address_parsed["data"]["results"][index]["name"]}"
 end
 puts "seeding restaurant completed"
 
@@ -35,4 +48,3 @@ puts 'Creating 10 fake fooditems...'
   fooditem.save!
 end
 puts 'Food items created!'
-
