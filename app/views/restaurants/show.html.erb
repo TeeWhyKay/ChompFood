@@ -11,15 +11,11 @@
     <% @foods.each do |food| %>
       <div class="card-category d-flex align-items-center">
         <img class="card-image ml-2" src= <%= food.photo_url %>>
-        <div class="card-details my-3">
-          <div class= "px-3">
-            <h4><strong><%= food.name %></strong></h4>
-            <p><%=h truncate(food.description, length: 60) %></p>
-            <div class="card-price card-cart d-flex justify-content-between">
-              <p>$<%= food.price %></p>
-              <i class="fas fa-cart-plus"></i>
-            </div>
-          </div>
+        <div class="card-details p-3">
+          <h4><strong><%= food.name %></strong></h4>
+          <p><%=h truncate(food.description, length: 70) %></p>
+          <p class="card-price">$<%= food.price %></p>
+          <i class="fas fa-cart-plus"></i>
         </div>
       </div>
      <% end %>

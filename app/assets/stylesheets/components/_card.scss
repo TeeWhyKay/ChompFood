@@ -11,25 +11,29 @@
   font-size: 12px;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  // position: relative;
 }
 
 .card-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-size: 11px;
+  position: relative;
 
   h4 {
+    font-size: 18px;
+  }
+
+  i {
+    position: absolute;
+    right: 20px;
+    bottom: 0px;
     font-size: 18px;
   }
 }
 
 .card-price {
   font-size: 18px;
-  // position: absolute;
-  left: 20px;
-  bottom: 16px;
+  left: 14px;
+  bottom: -20px;
+  position: absolute;
 }
 
 .card-image {
