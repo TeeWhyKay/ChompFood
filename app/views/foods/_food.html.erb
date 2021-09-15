@@ -1,9 +1,13 @@
 <div class="card-category d-flex align-items-center">
-  <img class="card-image ml-2" src= <%= food.photo_url %>>
-  <div class="card-details p-3">
-    <h4><strong><%= food.name %></strong></h4>
-    <p><%=h truncate(food.description, length: 70) %></p>
-    <p class="card-price">$<%= food.price %></p>
-    <i class="fas fa-cart-plus"></i>
-  </div>
+  <%= link_to cart_popup_path do %>
+    <div class="d-flex align-items-center">
+      <img class="card-image ml-2" src= <%= food.photo_url %>>
+      <div class="card-details p-3">
+        <h4><strong><%= food.name %></strong></h4>
+        <p><%=h truncate(food.description, length: 70) %></p>
+        <p class="card-price">$<%= food.price %></p>
+        <i class="fas fa-cart-plus"></i>
+      </div>
+    </div>
+  <% end %>
 </div>
