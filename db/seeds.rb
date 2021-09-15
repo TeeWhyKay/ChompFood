@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 puts "clearing db"
 Restaurant.destroy_all
+Food.destroy_all
 
 puts "seeding db with restaurants"
 20.times do
@@ -19,3 +21,18 @@ puts "seeding db with restaurants"
   )
 end
 puts "seeding restaurant completed"
+
+
+puts 'Creating 10 fake fooditems...'
+10.times do
+  fooditem = Food.new(
+    name:       Faker::Food.dish,
+    description:    Faker::Food.description,
+    price: rand(0...10.0).round(2),
+    photo_url: "https://source.unsplash.com/random/300x200?sig=#{rand(100)}"
+  )
+  fooditem.restaurant = Restaurant.first
+  fooditem.save!
+end
+puts 'Food items created!'
+
