@@ -1,2 +1,9 @@
-<h1>Restaurants</h1>
+<%= link_to "Home", root_path %> > <%= "Restaurants" %>
+<br>
+<h2>Popular Near You </h2>
 
+<div class="container">
+  <div class="row">
+    <%= render @restaurants %>
+  </div>
+</div>
