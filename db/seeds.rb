@@ -12,14 +12,20 @@ Restaurant.destroy_all
 
 puts "seeding db with restaurants"
 
+url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&language=en&apikey=ytxKCmRhV2kPY8fEpKXN63SuuQSkVmPw"
+address_serialized = URI.open(url).read
+address_parsed = JSON.parse(address_serialized)
 
 
-20.times do
+20.times do |index|
+  address_street = address_parsed["data"]["results"][index]["address"]
+  full_address = "#{address_street["block"]} #{address_street["streetName"]} ##{address_street["floorNumber"]}-#{address_street["unitNumber"]} #{address_street["buildingName"]} #{address_street["postalCode"]}"
+
   Restaurant.create(
-    name: Faker::Restaurant.name,
-    address:
-    opening_time: ["7:00AM", "8:00AM", "9:00AM", "10:00AM", "11:00AM"].sample,
-    closing_time: ["6:00PM", "7:00PM", "8:00PM", "9:00PM", "10:00PM", "11:00PM"].sample
+    name: address_parsed["data"]["results"][index]["name"],
+    address: full_address,
+    opening_time: address_parsed["data"]["results"][index]["businessHour"].first["openTime"],
+    closing_time: address_parsed["data"]["results"][index]["businessHour"].first["closeTime"]
   )
 end
 puts "seeding restaurant completed"
