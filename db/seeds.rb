@@ -9,8 +9,8 @@ require 'open-uri'
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "clearing db"
-Restaurant.destroy_all
 Food.destroy_all
+Restaurant.destroy_all
 
 puts "seeding db with restaurants"
 
@@ -21,7 +21,7 @@ address_parsed = JSON.parse(address_serialized)
 
 20.times do |index|
   address_street = address_parsed["data"]["results"][index]["address"]
-  full_address = "#{address_street["block"]} #{address_street["streetName"]} ##{address_street["floorNumber"]}-#{address_street["unitNumber"]} #{address_street["buildingName"]} #{address_street["postalCode"]}"
+  full_address = "#{address_street["block"]} #{address_street["streetName"]}"
 
   Restaurant.create(
     name: address_parsed["data"]["results"][index]["name"],
@@ -48,4 +48,3 @@ puts 'Creating 10 fake fooditems...'
   fooditem.save!
 end
 puts 'Food items created!'
-
