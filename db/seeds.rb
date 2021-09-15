@@ -8,6 +8,7 @@
 
 puts "clearing db"
 Restaurant.destroy_all
+Food.destroy_all
 
 puts "seeding db with restaurants"
 20.times do
@@ -33,5 +34,5 @@ puts 'Creating 10 fake fooditems...'
   fooditem.restaurant = Restaurant.first
   fooditem.save!
 end
-puts 'Finished!'
+puts 'Food items created!'
 
