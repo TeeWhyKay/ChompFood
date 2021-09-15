@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :restaurants, only: [:index, :show]
-  post 'my_cart', to: 'carts#index', as: :cart
-  get 'restaurants/:id', to: 'carts#show', as: :cart_popup
+  get 'my_cart', to: 'food_orders#index', as: :cart
+  get 'restaurants/:id', to: 'food_orders#show', as: :cart_popup
 end
