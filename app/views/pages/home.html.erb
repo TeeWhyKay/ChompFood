@@ -2,7 +2,13 @@
   <div class="container">
     <h1 class="py-2">ChompFood</h1>
     <p><strong>Crave it? Chomp it.</strong></p>
-    <a class="btn btn-success" href="#">Order now</a>
+    <%= form_tag restaurants_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search for restaurants near me" %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 
