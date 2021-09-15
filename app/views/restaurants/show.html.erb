@@ -1,0 +1,23 @@
+
+
+<div class="container">
+Hello World
+
+<div class="cards">
+<% @foods.each do |food| %>
+  <div class="card-category">
+    <div class="card-details my-3">
+        <img class="card-image ml-2" src= <%= food.photo_url %>>
+        <div class= "px-3">
+            <div><strong><%= food.name %></strong></div>
+            <div><%= food.description %></div>
+        </div>
+    </div>
+    <div class="card-price mr-3">
+       $<%= food.price %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+</div>
