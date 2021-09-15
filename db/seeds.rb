@@ -21,7 +21,7 @@ address_parsed = JSON.parse(address_serialized)
 
 20.times do |index|
   address_street = address_parsed["data"]["results"][index]["address"]
-  full_address = "#{address_street["block"]} #{address_street["streetName"]}"
+  full_address = "#{address_street["block"]} #{address_street["streetName"]}, Singapore"
 
   Restaurant.create(
     name: address_parsed["data"]["results"][index]["name"],
