@@ -24,8 +24,11 @@ address_parsed = JSON.parse(address_serialized)
   Restaurant.create(
     name: address_parsed["data"]["results"][index]["name"],
     address: full_address,
+    longitude: address_parsed["data"]["results"][index]["location"]["longitude"],
+    latitude: address_parsed["data"]["results"][index]["location"]["latitude"],
     opening_time: address_parsed["data"]["results"][index]["businessHour"].first["openTime"],
     closing_time: address_parsed["data"]["results"][index]["businessHour"].first["closeTime"]
   )
+  puts "seeded #{address_parsed["data"]["results"][index]["name"]}"
 end
 puts "seeding restaurant completed"
