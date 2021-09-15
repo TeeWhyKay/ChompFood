@@ -1,0 +1,11 @@
+<div class="card-restaurant col-3">
+  <%= link_to restaurant_path(restaurant) do %>
+    <img src="https://source.unsplash.com/random/?food"/>
+    <div class="card-restaurant-infos">
+      <div>
+        <h2><%= restaurant.name %></h2>
+        <p>Description of restaurant</p>
+      </div>
+    </div>
+  <% end %>
+</div>
