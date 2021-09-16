@@ -4,7 +4,14 @@
     <div class="card-restaurant-infos">
       <div>
         <h2><%= restaurant.name %></h2>
-        <p>Description of restaurant</p>
+        <div class="basic_info_container"><%= restaurant.cuisine %></div>
+        <% unchecked_stars = (5 - restaurant.rating).to_i %>
+        <% restaurant.rating.times do |star| %>
+          <span class="fa fa-star checked"></span>
+        <% end %>
+        <% unchecked_stars.times do |star| %>
+          <span class="fa fa-star"></span>
+        <% end %>
       </div>
     </div>
   <% end %>

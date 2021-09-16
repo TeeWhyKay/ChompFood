@@ -31,6 +31,8 @@ address_parsed = JSON.parse(address_serialized)
     opening_time: address_parsed["data"]["results"][index]["businessHour"].first["openTime"],
     closing_time: address_parsed["data"]["results"][index]["businessHour"].first["closeTime"],
     promo_status: rand(0..1)
+    rating: address_parsed["data"]["results"][index]["rating"],
+    cuisine: address_parsed["data"]["results"][index]["cuisine"]
   )
   puts "seeded #{address_parsed["data"]["results"][index]["name"]}"
 end

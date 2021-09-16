@@ -1,9 +1,15 @@
-<%= link_to "Home", root_path %> > <%= "Restaurants" %>
-<br>
-<h2>Popular Near You </h2>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="container">
-  <div class="row">
+</head>
+<body>
+  <%= link_to "Home", root_path %> > <%= "Restaurants" %>
+  <br>
+  <h2>Popular Near You </h2>
+
+  <div class="container">
+    <div class="row">
     <%= render @restaurants %>
+    </div>
   </div>
-</div>
+</body>
