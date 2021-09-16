@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2021_09_16_033223) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.integer "promo_status"
+    t.integer "rating"
+    t.string "cuisine"
   end
 
   create_table "users", force: :cascade do |t|

@@ -19,31 +19,29 @@
 
 .card-details {
   font-size: 11px;
-  position: relative;
 
   h4 {
-    font-size: 18px;
-  }
-
-  i {
-    position: absolute;
-    right: 20px;
-    bottom: 0px;
     font-size: 18px;
   }
 }
 
 .card-price {
   font-size: 18px;
-  left: 14px;
-  bottom: -20px;
-  position: absolute;
 }
 
 .card-image {
-    width: 12em;
-    padding: 8px;
-    border-radius: 15px;
+  width: 12em;
+  padding: 8px;
+  border-radius: 15px;
+}
+
+.promo-icon p{
+  background-color: #00b14f;
+  border-color: #00b14f;
+  color: #fff;
+  width: 90px;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 // Smallest device

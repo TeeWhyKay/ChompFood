@@ -1,9 +1,12 @@
 <%= link_to "Home", root_path %> > <%= "Restaurants" %>
 <br>
-<h2>Popular Near You </h2>
-
-<div class="container">
-  <div class="row">
-    <%= render @restaurants %>
+<% if @restaurants.empty? %>
+  <h2>Sorry, try another location</h2>
+<% else %>
+  <h2>Popular Near You </h2>
+  <div class="container">
+    <div class="row">
+        <%= render @restaurants %>
+    </div>
   </div>
-</div>
+<% end %>
