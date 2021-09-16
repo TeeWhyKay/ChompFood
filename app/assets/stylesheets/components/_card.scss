@@ -22,24 +22,22 @@
 
 .card-details {
   font-size: 11px;
-  position: relative;
 
   h4 {
     font-size: 18px;
   }
 }
 
-.card-price {
-  font-size: 18px;
-  left: 14px;
-  bottom: -20px;
-  position: absolute;
-}
-
 .card-image {
   width: 12em;
   padding: 8px;
   border-radius: 15px;
+  position: relative;
+}
+
+.card-price {
+  font-size: 18px;
+  text-align: left;
 }
 
 .promo-icon p{
