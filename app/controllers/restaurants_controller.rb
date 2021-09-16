@@ -1,14 +1,23 @@
 class RestaurantsController < ApplicationController
   def index
-    # latlong = results.first.coordinates => [48.856614, 2.3522219]  # latitude and longitude
-    # @restaurants = Restaurant.near(latlong, 5, units: :km) # venues within 5 km of a point
-    if params[:query].present?
-      query_location = Geocoder.search(params[:query]).first.coordinates
-      if query_location.nil?
-        @restaurants = Restaurant.where("name ILIKE ?", "%#{params[:query]}%")
-      else
+    # we can combine results from location and search
+    # return restaurants closest to you
+    # followed by whatever restaurants that you search
+    # there are going to be repeats, so we need a way to prevent adding repeats to the results
 
+    if params[:query].present?
+      @ip = request.remote_ip
+      geocode_result = Geocoder.search("#{params[:query]}, Singapore") # no method ERROR if no coordindates!!
+      if geocode_result.empty?
+        nearby_restaurants = []
+      else
+        query_location = geocode_result.first.coordinates
+        nearby_restaurants = Restaurant.near(query_location, 5, units: :km)
       end
+      # list of nearest restaurants
+      # list of searched restaurants
+      searched_restaurants = Restaurant.search_by_name_and_address(params[:query])
+      @restaurants = include_searched(nearby_restaurants, searched_restaurants)
     else
       @restaurants = Restaurant.all
     end
@@ -17,5 +26,14 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @foods = @restaurant.foods
+  end
+
+  private
+
+  def include_searched(nearest_rest, searched_rest)
+    searched_rest.each do |rest|
+      nearest_rest << rest unless nearest_rest.include?(rest)
+    end
+    return nearest_rest
   end
 end
