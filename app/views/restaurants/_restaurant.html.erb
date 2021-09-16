@@ -1,11 +1,12 @@
 <div class="card-restaurant col-3 mb-3">
   <%= link_to restaurant_path(restaurant) do %>
-    <img src="https://source.unsplash.com/random/?food"/>
+    <img src= <%= "https://source.unsplash.com/random/?food&sig=#{rand(1..20)}" %>>
     <div class="card-restaurant-infos">
       <div>
         <h2><%= restaurant.name %></h2>
         <div class="basic_container"><%= restaurant.cuisine %>
         </div>
+
         <% unchecked_stars = (5 - restaurant.rating).to_i %>
         <% restaurant.rating.times do |star| %>
           <span class="fa fa-star checked"></span>

@@ -32,9 +32,18 @@
 }
 
 .card-image {
-    width: 12em;
-    padding: 8px;
-    border-radius: 15px;
+  width: 12em;
+  padding: 8px;
+  border-radius: 15px;
+}
+
+.promo-icon p{
+  background-color: #00b14f;
+  border-color: #00b14f;
+  color: #fff;
+  width: 90px;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 // Smallest device
