@@ -2,7 +2,6 @@ const initModal = () => {
   const modal = document.querySelector('#exampleModal');
 
   const findOrderInCart = (orderItem, orderArray) => {
-    // debugger
     return orderArray.find((el) => el.dishId === orderItem.dishId)
   };
 
@@ -13,7 +12,6 @@ const initModal = () => {
       const orderArray = JSON.parse(window.localStorage.order);
       const orderInCart = findOrderInCart(orderItem, orderArray);
       // if orderItem.id is in the order
-      // debugger
       if (orderInCart) {
         // update instead of make new
         orderInCart.quantity = orderItem.quantity;
@@ -26,8 +24,7 @@ const initModal = () => {
         window.localStorage.order = JSON.stringify(orderArray);
       }
     } else {
-      // if not, start it & add item
-      // const orderArray = [];
+      // else, start it & add item
       window.localStorage.order = JSON.stringify([orderItem]);
     }
     console.log(window.localStorage.order);
