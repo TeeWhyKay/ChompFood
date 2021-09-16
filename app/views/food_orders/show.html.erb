@@ -1,8 +1,17 @@
+<%# when there is nothing in the cart %>
+
+
+<h1 class="cart-title empty text-muted text-center">Your cart is empty</h1>
+
+
+<%# when there is something in the cart %>
 <div style="background-color: white">
   <div class="container py-3">
-    <%= link_to "Home", "/" %> > <%= link_to "Restaurants", "/restaurants#index" %> > <%= @restaurant.name %>
-    <h1 class="mt-3"><%= @restaurant.name %></h1>
-    <p>Operating Hours <%= @restaurant.opening_time.strftime('%I:%M %p') %> - <%= @restaurant.closing_time.strftime('%I:%M %p') %></p>
+    <div class="cards">
+      <div class="card">
+        <h1 class="mt-3"> Restaurant name </h1>
+        <p> Food items</p>
+      </div>
+    </div>
   </div>
 </div>
-<%# this is a placeholder %>

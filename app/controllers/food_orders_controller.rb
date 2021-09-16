@@ -1,5 +1,5 @@
 class FoodOrdersController < ApplicationController
-  def index
+  def show
 
   end
 end
