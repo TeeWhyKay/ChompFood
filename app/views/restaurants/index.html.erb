@@ -1,15 +1,12 @@
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-</head>
-<body>
-  <%= link_to "Home", root_path %> > <%= "Restaurants" %>
-  <br>
+<%= link_to "Home", root_path %> > <%= "Restaurants" %>
+<br>
+<% if @restaurants.empty? %>
+  <h2>Sorry, try another location</h2>
+<% else %>
   <h2>Popular Near You </h2>
-
   <div class="container">
     <div class="row">
-    <%= render @restaurants %>
+        <%= render @restaurants %>
     </div>
   </div>
-</body>
+<% end %>
