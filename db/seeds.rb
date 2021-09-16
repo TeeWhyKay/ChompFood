@@ -29,7 +29,9 @@ address_parsed = JSON.parse(address_serialized)
     longitude: address_parsed["data"]["results"][index]["location"]["longitude"],
     latitude: address_parsed["data"]["results"][index]["location"]["latitude"],
     opening_time: address_parsed["data"]["results"][index]["businessHour"].first["openTime"],
-    closing_time: address_parsed["data"]["results"][index]["businessHour"].first["closeTime"]
+    closing_time: address_parsed["data"]["results"][index]["businessHour"].first["closeTime"],
+    rating: address_parsed["data"]["results"][index]["rating"],
+    cuisine: address_parsed["data"]["results"][index]["cuisine"]
   )
   puts "seeded #{address_parsed["data"]["results"][index]["name"]}"
 end
