@@ -34,6 +34,7 @@ address_parsed = JSON.parse(address_serialized)
     address: full_address,
     longitude: address_parsed["data"]["results"][index]["location"]["longitude"],
     latitude: address_parsed["data"]["results"][index]["location"]["latitude"],
+    promo_status: rand(0..1),
     opening_time: opening_time,
     closing_time: closing_time,
     rating: address_parsed["data"]["results"][index]["rating"],
@@ -51,9 +52,28 @@ puts 'Creating 10 fake fooditems...'
     name:       Faker::Food.dish,
     description:    Faker::Food.description,
     price: rand(0...10.0).round(2),
-    photo_url: "https://source.unsplash.com/random/300x200?sig=#{rand(100)}"
+    photo_url: "https://source.unsplash.com/random/300x200?food&sig=#{rand(1..100)}"
   )
   fooditem.restaurant = Restaurant.first
   fooditem.save!
 end
 puts 'Food items created!'
+
+last_restaurant = Restaurant.last
+last_restaurant.promo_status = 1
+last_restaurant.save!
+
+puts 'Creating 7 fake fooditems for the last restaurant...'
+7.times do
+  fooditem = Food.new(
+    name:       Faker::Food.dish,
+    description:    Faker::Food.description,
+    price: rand(0...10.0).round(2),
+    photo_url: "https://source.unsplash.com/random/300x200?food&sig=#{rand(1..100)}"
+  )
+  fooditem.restaurant = Restaurant.last
+  fooditem.save!
+end
+puts 'Food items created for last restaurant!'
+
+
