@@ -1,19 +1,36 @@
 const initModal = () => {
   const modal = document.querySelector('#exampleModal');
 
+  const findOrderInCart = (orderItem, orderArray) => {
+    // debugger
+    return orderArray.find((el) => el.dishId === orderItem.dishId)
+  };
+
   const writeToLocalStorage = (orderItem) => {
     // if have key for storing items
-    // add order item directly to it
     if (window.localStorage.order) {
+      // add order item directly to it
       const orderArray = JSON.parse(window.localStorage.order);
-      orderArray.push(orderItem);
-      window.localStorage.order = JSON.stringify(orderArray);
+      const orderInCart = findOrderInCart(orderItem, orderArray);
+      // if orderItem.id is in the order
+      // debugger
+      if (orderInCart) {
+        // update instead of make new
+        orderInCart.quantity = orderItem.quantity;
+        orderInCart.instructions = orderItem.instructions;
+        window.localStorage.order = JSON.stringify(orderArray);
+      } else {
+        // else, add to cart normally
+        const orderArray = JSON.parse(window.localStorage.order);
+        orderArray.push(orderItem);
+        window.localStorage.order = JSON.stringify(orderArray);
+      }
     } else {
       // if not, start it & add item
-      // orderArray = []
-      window.localStorage.order = JSON.stringify([orderArray]);
+      // const orderArray = [];
+      window.localStorage.order = JSON.stringify([orderItem]);
     }
-    cconsole.log(window.localStorage.order);
+    console.log(window.localStorage.order);
   };
 
   const initAddToCart = () => {
@@ -28,7 +45,7 @@ const initModal = () => {
       // get special instructions
       const instructions = document.querySelector('#special-instructions').value;
 
-      orderItem = {
+      const orderItem = {
         dishId: currentDishId,
         quantity: quantity,
         instructions: instructions
