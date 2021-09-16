@@ -12,32 +12,14 @@
     <p>Cuisine: <%= @restaurant.cuisine %></p>
     <p>Operating Hours <%= @restaurant.opening_time.strftime('%I:%M %p') %> - <%= @restaurant.closing_time.strftime('%I:%M %p') %></p>
     <% if @restaurant.promo_status == 1 %>
-      <div class="promo-icon"><p>Promotion</p></div> 
+      <div class="promo-icon"><p>Promotion</p></div>
     <% end %>
   </div>
 </div>
 
 <div class="container my-3">
   <div class="cards">
-    <% @foods.each do |food| %>
-      <div class="card-category">
-        <div class="card-details my-3">
-            <img class="card-image ml-2" src= <%= food.photo_url %>>
-            <div class= "px-3">
-                <div><strong><%= food.name %></strong></div>
-                <div><%= food.description %></div>
-            </div>
-        </div>
-        <div class="card-price mr-3">
-        <% if @restaurant.promo_status == 1 %>
-          <p style="text-decoration: line-through; color:red">$<%= food.price %></p>
-          <p>$<%= (food.price * 0.8).round(2) %></p>
-        <% else %>
-          $<%= food.price %>
-        <% end %>
-        </div>
-      </div>
-    <% end %>
+   <%= render @foods %>
   </div>
 </div>
 
