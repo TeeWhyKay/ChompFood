@@ -1,13 +1,12 @@
-<div class="container ml-4-">
+<div class="container">
   <%= link_to "Home", root_path %> > <%= "Restaurants" %>
   <br>
   <% if @restaurants.empty? %>
     <h1>Sorry, try another location</h1>
   <% else %>
-    <h1>Popular Near You </h1>
-    <div class="container">
-      <div class="row">
-          <%= render @restaurants %>
+    <div class="mt-2"><h1>Popular Near You </h1></div>
+      <div class="row mt-5">
+        <%= render @restaurants %>
       </div>
     </div>
   <% end %>
