@@ -22,3 +22,35 @@
         </div>
       </div>
   </div>
+
+<%# Modal %>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+        <p class="text-muted modal-price">S$</p>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="food-name" class="col-form-label">Quantity:</label>
+            <input type="text" class="form-control" id="food-quantity">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Special Request:</label>
+            <textarea class="form-control" id="special-instructions"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary btn-modal">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
