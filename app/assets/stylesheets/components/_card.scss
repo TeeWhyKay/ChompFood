@@ -1,15 +1,14 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 10px;
 }
 
 .card-category {
-  background-color: transparent;
+  background-color: white;
   height: 180px;
   color: rgb(31, 29, 29);
   font-size: 12px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   position: relative;
