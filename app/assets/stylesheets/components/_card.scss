@@ -19,6 +19,7 @@
 
 .card-details {
   font-size: 11px;
+  position: relative;
 
   h4 {
     font-size: 18px;
@@ -27,6 +28,9 @@
 
 .card-price {
   font-size: 18px;
+  left: 14px;
+  bottom: -20px;
+  position: absolute;
 }
 
 .card-image {
