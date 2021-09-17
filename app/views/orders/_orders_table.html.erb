@@ -1,0 +1,26 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Time of Order</th>
+        <th scope="col">Details</th>
+        <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% num = 1 %>
+    <% @orders.each do |order| %>
+        <tr>
+        <th scope="row"><%= num %></th>
+        <td><%= (order.created_at + 8.hours).to_s.chomp(' UTC') %></td>
+        <td><%= order.details %></td>
+        <% if order.status == "pending" %>
+            <td class="table-warning"><%= order.status.capitalize %></td>
+        <% else %>
+            <td><%= order.status.capitalize %></td>
+        <% end %> 
+        </tr>
+        <% num += 1 %>
+    <% end %>
+    </tbody>
+    </table>
