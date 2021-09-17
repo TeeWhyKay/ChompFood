@@ -19,7 +19,7 @@ const initCart = () => {
         },
         body: window.localStorage.order
       }).then(res => res.json())
-        .then(data => renderCartItems(data));
+        .then(data => renderCartItems(data, cart));
 
     } else {
       noItems.classList.remove('d-none')
@@ -28,8 +28,14 @@ const initCart = () => {
 
 };
 
-const renderCartItems = (data) => {
-
+const renderCartItems = (data, cart) => {
+  const cartItems = cart.querySelector('.card-items')
+  data.items.forEach((item) => {
+    cartItems.innerHTML += `
+    <p> ${item.dishName} - Price: $${item.dishPrice} </p>
+    `
+  });
+  cartItems.insertAdjacentHTML('beforeend', `<p>Total: $${data.total}</p>`)
 };
 
 export { initCart };
