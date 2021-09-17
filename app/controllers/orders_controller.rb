@@ -15,6 +15,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def success
+
+  end
+
   private
 
   def order_params

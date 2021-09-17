@@ -46,10 +46,11 @@ const renderCartItems = (data, cart) => {
 
 const activateSubmitBtn = (cart) => {
   const submitBtn = cart.querySelector('.btn-primary');
-  submitBtn.addEventListener('click', () => {
+  submitBtn.addEventListener('click', (e) => {
     fetch('/orders', postOptions)
       .then(res => {
-        if (res === 200) {
+        if (res.status == 200) {
+          window.localStorage.clear();
           window.location.href = '/success';
         }
       })
