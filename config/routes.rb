@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:index]
   resources :payments, only: [:create]
 
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end
