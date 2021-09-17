@@ -44,7 +44,8 @@ const initModal = () => {
       // else, start it & add item
       window.localStorage.order = JSON.stringify([orderItem]);
     }
-    console.log(window.localStorage.order);
+    // ! leave this on when testing
+    // console.log(window.localStorage.order);
   };
 
   const initAddToCart = () => {
@@ -68,6 +69,8 @@ const initModal = () => {
           instructions: instructions
         }
         writeToLocalStorage(orderItem)
+        // when add to cart is clicked and success, add "show" to exampleModal class
+        modal.classList.remove('show');
       } else {
         showInvalidQuantityMsg();
       }
