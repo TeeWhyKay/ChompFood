@@ -10,7 +10,7 @@ const initCart = () => {
     if (window.localStorage.order) {
       cart.classList.remove('d-none')
       // POST request to db
-      fetch('/my_cart_info', {
+      fetch('/cart_info', {
         method: 'POST',
         headers: {
           "Accept": "application/json",
@@ -18,13 +18,17 @@ const initCart = () => {
           "X-CSRF-Token": csrfToken()
         },
         body: window.localStorage.order
-      }).then(response => response.json())
-        .then(data => console.log(data));
+      }).then(res => res.json())
+        .then(data => renderCartItems(data));
 
     } else {
       noItems.classList.remove('d-none')
     }
   }
+
+};
+
+const renderCartItems = (data) => {
 
 };
 
