@@ -14,34 +14,13 @@
 
 <div class="container my-5">
   <h1>ChompFood Promos in <strong style="color: #00b14f">Singapore</strong></h1>
-</div>
 
-
-<div id="carousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      1
-    </div>
-    <div class="carousel-item">
-      2
-    </div>
-    <div class="carousel-item">
-      3
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-
-<div class="container mb-5 px-20">
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators d-none">
+      <% @restaurant_pages.each_with_index do |page, index| %>
+      <li data-target="#carouselExampleIndicators" data-slide-to="<%= index + 1 %>" class="<%= index == 0 ? "active" : "" %>"></li>
+      <% end %>
+    </ol>
     <div class="carousel-inner">
       <% @restaurant_pages.each_with_index do |page, index| %>
         <div class="carousel-item <%= index == 0 ? "active" : "" %>">
@@ -57,16 +36,10 @@
         </div>
       <% end %>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
 </div>
+
+
 
 <div class="footer">
   <div class="footer-copyright">
