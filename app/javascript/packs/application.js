@@ -27,10 +27,12 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { initModal } from '../plugins/init_modal';
+import { initLocation } from '../plugins/init_location';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initModal();
+  initLocation();
 });
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';

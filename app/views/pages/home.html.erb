@@ -2,12 +2,14 @@
   <div class="container d-flex flex-md-column justify-content-start">
     <h1 class="py-2">ChompFood</h1>
     <p><strong>Crave it? Chomp it.</strong></p>
-    <%= form_tag restaurants_path, method: :get do %>
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Search for restaurants near me" %>
-      <%= submit_tag "Search", class: "btn btn-success" %>
+    <%= simple_form_for :search, url: restaurants_path, method: :get do |f| %>
+      <%= hidden_field_tag 'location', 'none'%>
+      <div class="search-form-control form-group">
+        <input class="form-control string required" type="text" name="query" id="query" placeholder="Search for restaurants near me"/>
+        <button name="button" type="button" class="btn btn-flat">
+          <a href="#" id="get_location"><i class="fas fa-map-marker-alt"></i></a>
+        </button>
+      </div>
     <% end %>
   </div>
 </div>
@@ -61,3 +63,10 @@
     @Chomp 2021
   </div>
 </div>
+
+
+<script>
+  var elmnt = document.querySelector(".banner");
+  var x = elmnt.scrollLeft;
+  var y = elmnt.scrollTop;
+</script>
