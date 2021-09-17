@@ -28,9 +28,18 @@ import "bootstrap";
 // Internal imports, e.g:
 import { initModal } from '../plugins/init_modal';
 import { initCart } from '../plugins/init_cart';
+import { initLocation } from '../plugins/init_location';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initModal();
   initCart();
+  initLocation();
+});
+
+import { initUpdateNavbarOnScroll } from '../components/navbar';
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your JS functions here
+  initUpdateNavbarOnScroll();
 });
