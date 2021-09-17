@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'my_cart', to: 'food_orders#index', as: :cart
   get 'restaurants/:id', to: 'food_orders#show', as: :cart_popup
 
-  resources :orders, only: [:index, :create]
+  resources :orders, only: [:index]
   resources :payments, only: [:create]
 
 end
