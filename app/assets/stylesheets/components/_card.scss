@@ -7,11 +7,9 @@
     color: rgb(31, 29, 29);
   }
 }
-
 .card-restaurant a {
   color: rgb(31, 29, 29);
 }
-
 .card-category {
   background-color: white;
   height: 180px;
@@ -22,11 +20,10 @@
 
 .card-details {
   font-size: 11px;
-
-  h4 {
-    font-size: 18px;
+    h4 {
+      font-size: 18px;
+    }
   }
-}
 
 .card-image {
   width: 12em;
@@ -48,22 +45,6 @@
   border-radius: 5px;
   padding: 3px;
 }
-
-.card-category {
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
