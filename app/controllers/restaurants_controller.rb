@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  
   def index
     # there are might be repeats, so we need a way to prevent adding repeats to the results
     if params[:query].present?
