@@ -13,7 +13,7 @@ class FoodOrdersController < ApplicationController
     total = 0
     order_params.each do |item|
       food = Food.find(item['dishId'])
-      total += food.price * item['quantity'].to_i
+      total += food.price.fractional.fdiv(100) * item['quantity'].to_i
       item.merge!({ dishPrice: food.price, dishName: food.name })
     end
 

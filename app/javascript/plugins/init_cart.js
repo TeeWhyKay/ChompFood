@@ -38,7 +38,7 @@ const renderCartItems = (data, cart) => {
   const cartItems = cart.querySelector('.card-items')
   data.items.forEach((item) => {
     cartItems.innerHTML += `
-    <p> ${item.dishName} - Price: $${item.dishPrice} </p>
+    <p> ${item.dishName} - Price: $${item.dishPrice.cents / 100} </p>
     `
   });
   cartItems.insertAdjacentHTML('beforeend', `<p>Total: $${data.total}</p>`)
