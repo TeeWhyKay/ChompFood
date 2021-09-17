@@ -5,7 +5,7 @@
           <img class="card-image ml-2" src= <%= food.photo_url %>>
           <% if @restaurant.promo_status == 1 %>
               <p class="card-price ml-3 mb-0 mt-2", style="text-decoration: line-through; color:red">$<%= food.price %></p>
-              <p class="card-price ml-3 mb-0 mt-0">$<%= (food.price * 0.8).round(1) %>0</p>
+              <p class="card-price ml-3 mb-0 mt-0">$<%= (food.price * 0.8).round(1) %></p>
           <% else %>
             <p class="card-price ml-3 mb-0 mt-3">$<%= food.price %></p>
           <% end %>
