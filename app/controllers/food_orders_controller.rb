@@ -1,8 +1,12 @@
 class FoodOrdersController < ApplicationController
   # create a new for making new food orders (may be in restaurant controller)
   # create a create for adding into food orders
-  def show
 
+  def index
+    # @food_order = 2
+  end
+
+  def show
   end
 
   def cart_info
