@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   post 'cart_info', to: 'food_orders#cart_info', as: :cart_info
   get 'restaurants/:id', to: 'food_orders#show', as: :cart_popup
 
-  resources :orders, only: [:index, :create]
+  post 'orders', to: 'orders#create', as: :orders
 end
