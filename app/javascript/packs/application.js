@@ -34,3 +34,10 @@ document.addEventListener('turbolinks:load', () => {
   initModal();
   initLocation(); // only work in the home page
 });
+
+import { initUpdateNavbarOnScroll } from '../components/navbar';
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your JS functions here
+  initUpdateNavbarOnScroll();
+});
