@@ -15,9 +15,9 @@ Restaurant.destroy_all
 puts "seeding db with restaurants"
 apikey = "ytxKCmRhV2kPY8fEpKXN63SuuQSkVmPw"
 url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&language=en&apikey=#{apikey}"
-count = 0
+# count = 0
 loop do
-  count += 1
+  # count += 1
   address_serialized = URI.open(url).read
   address_parsed = JSON.parse(address_serialized)
   next_token = address_parsed["nextToken"]

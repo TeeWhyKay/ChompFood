@@ -1,14 +1,16 @@
 class RestaurantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  
+
   def index
     # there are might be repeats, so we need a way to prevent adding repeats to the results
     location = params[:location]
     coordinates = retrieve_coordinates(location)
 
     if params[:query].present?
-      nearby_restaurants = Restaurant.near(coordinates, 5, units: :km) ? Restaurant.near(coordinates, 5, units: :km) : Restaurant.near('Singapore', 10, units: :km)
-      @restaurants = Restaurant.search_by_name_and_address(params[:query]) + nearby_restaurants
+      nearby_restaurants = Restaurant.near(coordinates, 5, :order => :distance) ? Restaurant.near(coordinates, 5, :order => :distance) : Restaurant.near('Singapore', 10, :order => :distance)
+      # @restaurants = Restaurant.search_by_name_and_address(params[:query]) + nearby_restaurants
+      raise
+      @restaurants = nearby_restaurants + Restaurant.search_by_name_and_address(params[:query])
     else
       @restaurants = Restaurant.all
     end
