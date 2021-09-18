@@ -33,7 +33,7 @@ const initModal = () => {
       window.localStorage.order = JSON.stringify([orderItem]);
     }
     // ! leave this on when testing
-    console.log(window.localStorage.order);
+    // console.log(window.localStorage.order);
   };
 
   const initAddToCart = () => {
@@ -50,16 +50,16 @@ const initModal = () => {
       const instructions = document.querySelector('#special-instructions').value;
 
       const orderItem = {
-        restaurant: currentRestaurant,
-        dishId: currentDishId,
-        quantity: quantity,
-        instructions: instructions
+        "restaurant": currentRestaurant,
+        "dishId": currentDishId,
+        "quantity": quantity,
+        "instructions": instructions
       }
 
       writeToLocalStorage(orderItem)
       // when add to cart is clicked and success, add "show" to exampleModal class
       modal.classList.remove('show');
-
+      location.reload();
     })
 
   };

@@ -2,14 +2,14 @@ import { post } from "jquery";
 import { csrfToken } from "@rails/ujs";
 
 const postOptions = {
-        method: 'POST',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfToken()
-        },
-        body: window.localStorage.order
-      };
+  method: 'POST',
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "X-CSRF-Token": csrfToken()
+  },
+  body: window.localStorage.order
+};
 
 const initCart = () => {
   const cart = document.querySelector('#cart');
@@ -25,6 +25,9 @@ const initCart = () => {
         .then(data => {
           renderCartItems(data, cart)
           activateSubmitBtn(cart);
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
         });
 
     } else {
@@ -36,7 +39,6 @@ const initCart = () => {
 
 const renderCartItems = (data, cart) => {
   const cartItems = cart.querySelector('.card-items');
-
   const currentRestaurant = data.items[0].restaurant;
 
   data.items.forEach((item) => {
