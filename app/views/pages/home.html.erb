@@ -31,7 +31,17 @@
             <% page.each do |restaurant| %>
               <div class="col-3">
                 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-                  <%= restaurant.name %>
+                </div>
+                <div class="m-3">
+                  <h6><%= restaurant.name %></h6>
+                  <% unchecked_stars = (5 - restaurant.rating).to_i %>
+                  <% restaurant.rating.times do |star| %>
+                    <span class="fa fa-star checked"></span>
+                  <% end %>
+                  <% unchecked_stars.times do |star| %>
+                    <span class="fa fa-star"></span>
+                  <% end %>
+                  <p><%= restaurant.cuisine %></p>
                 </div>
               </div>
             <% end %>
