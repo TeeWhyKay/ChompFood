@@ -1,5 +1,5 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.jen-eats.com/tanglin/images/restaurants-and-bars/banner.jpg);">
-  <div class="container d-flex flex-md-column justify-content-start">
+  <div class="container d-flex flex-md-column justify-content-start mt-5">
     <h1 class="py-2">ChompFood</h1>
     <p><strong>Crave it? Chomp it.</strong></p>
     <%= simple_form_for :search, url: restaurants_path, method: :get do |f| %>
@@ -14,7 +14,9 @@
   </div>
 </div>
 <div class="container my-5">
-  <div class="pb-5"><h1>ChompFood Promos in <strong style="color: #00b14f">Singapore</strong></h1></div>
+  <div class="pb-5">
+    <h1>ChompFood Promos in <strong style="color: #00b14f">Singapore</strong></h1>
+  </div>
 
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators d-none">
