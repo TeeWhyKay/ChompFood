@@ -15,6 +15,7 @@ class PaymentsController < ApplicationController
       success_url: orders_url(root_path),
       cancel_url: cart_url(root_path)
     )
+    # order.update(checkout_session_id: session.id)
     redirect_to session.url
   end
 end

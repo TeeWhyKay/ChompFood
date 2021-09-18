@@ -7,12 +7,13 @@
 <%#  ----------- when there is something in the cart %>
 
 <div id="cart" class="d-none" style="background-color: white">
-
-  <div class="card-items">
-    <h1 class="mt-3"> Restaurant name </h1>
-    <p> Food items</p>
-  </div>
-    <%# ------------------- PLACEHOLDER BUTTON, FOR STRIPE %>
-    <p class="btn btn-primary btn block">Submit Order</p>
-
+  <div class="container py-3">
+    <div class="card-items">
+      <h1 class="mt-3"> Restaurant name </h1>
+      <p> Food items</p>
+    </div>
+      <%# ------------------- PLACEHOLDER BUTTON, FOR STRIPE %>
+      <%# <p class="btn btn-primary btn block">Submit Order</p> %>
+      <%= render "create_order" %>
+    </div>
 </div>

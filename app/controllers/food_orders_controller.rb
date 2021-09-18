@@ -7,6 +7,7 @@ class FoodOrdersController < ApplicationController
   end
 
   def show
+    
   end
 
   def cart_info
@@ -20,9 +21,11 @@ class FoodOrdersController < ApplicationController
     respond_to do |format|
       format.json { render json: { items: order_params, total: total } }
     end
+
   end
 
   def order_params
     params.permit!["_json"]
+    raise
   end
 end
