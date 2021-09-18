@@ -20,7 +20,7 @@ const initCart = () => {
     if (window.localStorage.order) {
       cart.classList.remove('d-none')
       // POST request to db
-      fetch('/cart_info', postOptions)
+      fetch('/cart', postOptions)
         .then(res => res.json())
         .then(data => {
           renderCartItems(data, cart)
@@ -40,16 +40,18 @@ const renderCartItems = (data, cart) => {
   const currentRestaurant = data.items[0].restaurant;
 
   data.items.forEach((item) => {
+    const price = (item.dishPrice.cents / 100).toFixed(2);
     cartItems.innerHTML += `
     <h5 class="card-title">${item.dishName}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Price: $${item.dishPrice.cents / 100} (Quantity: ${item.quantity})</h6>
+    <h6 class="card-subtitle mb-2 text-muted">Price: $${price} (Quantity: ${item.quantity})</h6>
+    <p>Subtotal: $${(price * item.quantity).toFixed(2)}</p>
     `
   });
 
   const checkoutRestaurantName = cart.querySelector('.checkout-restaurant-name');
   checkoutRestaurantName.innerHTML = `Restaurant: <i>${currentRestaurant}</i>`;
 
-  cartItems.insertAdjacentHTML('beforeend', `<p>Total: $${data.total}</p>`)
+  cartItems.insertAdjacentHTML('beforeend', `<p style="font-size: 1.25rem;">Total: $${data.total.toFixed(2)}</p>`)
 };
 
 const activateSubmitBtn = (cart) => {
