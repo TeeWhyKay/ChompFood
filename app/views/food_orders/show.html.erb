@@ -10,16 +10,18 @@
 
   <div style="background-color: white">
     <div class="container py-3">
-
       <h1 class="mt-3">Last Step - Checkout</h1>
       <p class="checkout-restaurant-name">Restaurant name</p>
     </div>
   </div>
 
-  <div class="card-items">
-
+  <div class="card mx-auto m-3" style="width: 30rem;">
+    <div class="card-body card-items">
+      <%# Food name and Food price %>
+    </div>
+    <%= render "create_order", class: "btn btn-primary btn block" %>
   </div>
     <%# ------------------- PLACEHOLDER BUTTON, FOR STRIPE %>
-    <p class="btn btn-primary btn block">Submit Order</p>
+
 
 </div>

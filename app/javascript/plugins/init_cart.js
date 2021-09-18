@@ -41,7 +41,8 @@ const renderCartItems = (data, cart) => {
 
   data.items.forEach((item) => {
     cartItems.innerHTML += `
-    <p> ${item.dishName} - Price: $${item.dishPrice.cents / 100} </p>
+    <h5 class="card-title">${item.dishName}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Price: $${item.dishPrice.cents / 100} (Quantity: ${item.quantity})</h6>
     `
   });
 
