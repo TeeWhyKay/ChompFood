@@ -47,7 +47,7 @@ const renderCartItems = (data, cart) => {
   });
 
   const checkoutRestaurantName = cart.querySelector('.checkout-restaurant-name');
-  checkoutRestaurantName.innerText = currentRestaurant;
+  checkoutRestaurantName.innerHTML = `Restaurant: <i>${currentRestaurant}</i>`;
 
   cartItems.insertAdjacentHTML('beforeend', `<p>Total: $${data.total}</p>`)
 };
