@@ -9,7 +9,7 @@
           <% else %>
             <p class="card-price ml-3 mb-0 mt-3">$<%= food.price %></p>
           <% end %>
-        </div>  
+        </div>
         <div class="d-flex flex-column">
           <div class="card-details p-3">
             <h4><strong><%=h truncate(food.name, length: 15) %></strong></h4>
@@ -21,6 +21,7 @@
               class="btn btn-primary btn-cart w-75 mt-1"
               data-toggle="modal"
               data-target="#exampleModal"
+              data-restaurant-name="<%= food.restaurant.name%>"
               data-food-name="<%= food.name%>"
               data-food-price="<%= food.price%>"
               data-food-id="<%= food.id%>">
