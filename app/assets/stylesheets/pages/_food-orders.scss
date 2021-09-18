@@ -1,4 +1,7 @@
-.cart-title.empty {
-  margin-top: 40%;
-  margin-bottom: 40%;
-}
+div.empty-cart-container {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center }
+div.container p.cart-title {
+  margin: 0 }
