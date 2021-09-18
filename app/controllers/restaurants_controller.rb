@@ -8,8 +8,6 @@ class RestaurantsController < ApplicationController
 
     if params[:query].present?
       nearby_restaurants = Restaurant.near(coordinates, 5, :order => :distance) ? Restaurant.near(coordinates, 5, :order => :distance) : Restaurant.near('Singapore', 10, :order => :distance)
-      # @restaurants = Restaurant.search_by_name_and_address(params[:query]) + nearby_restaurants
-      raise
       @restaurants = nearby_restaurants + Restaurant.search_by_name_and_address(params[:query])
     else
       @restaurants = Restaurant.all
