@@ -56,6 +56,15 @@
   color: white;
   font-size: 24px;
   font-weight: bold;
+
+  p {
+    margin-bottom: 0;
+    padding-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 // Smallest device
