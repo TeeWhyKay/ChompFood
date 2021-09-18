@@ -2,17 +2,6 @@ const initModal = () => {
   const modal = document.querySelector('#exampleModal');
 
   /**
-   * Invalid quantity display
-   */
-  const invalidQuantity = document.querySelector('#invalid-quantity');
-  const showInvalidQuantityMsg = () => {
-    invalidQuantity.innerText = 'Please input a valid amount';
-  };
-  const removeInvalidQuantityMsg = () => {
-    invalidQuantity.innerText = '';
-  };
-
-  /**
    * Cart mechanics
    */
   const findOrderInCart = (dishId, orderArray) => {
@@ -45,7 +34,7 @@ const initModal = () => {
       window.localStorage.order = JSON.stringify([orderItem]);
     }
     // ! leave this on when testing
-    // console.log(window.localStorage.order);
+    console.log(window.localStorage.order);
   };
 
   const initAddToCart = () => {
@@ -62,20 +51,16 @@ const initModal = () => {
       const instructions = document.querySelector('#special-instructions').value;
 
       // if quantity is not invalid (like negative), proceed as normal
-      if (quantity > 0) {
-        removeInvalidQuantityMsg();
-        const orderItem = {
-          restaurant: currentRestaurant,
-          dishId: currentDishId,
-          quantity: quantity,
-          instructions: instructions
-        }
-        writeToLocalStorage(orderItem)
-        // when add to cart is clicked and success, add "show" to exampleModal class
-        modal.classList.remove('show');
-      } else {
-        showInvalidQuantityMsg();
+
+      const orderItem = {
+        restaurant: currentRestaurant,
+        dishId: currentDishId,
+        quantity: quantity,
+        instructions: instructions
       }
+      writeToLocalStorage(orderItem)
+      // when add to cart is clicked and success, add "show" to exampleModal class
+      modal.classList.remove('show');
 
     })
 
@@ -100,7 +85,6 @@ const initModal = () => {
 
     if (modal) {
       $('#exampleModal').on('show.bs.modal', function (event) {
-        removeInvalidQuantityMsg();
 
         var button = $(event.relatedTarget) // Button that triggered the modal
         var foodName = button.data('food-name') // Extract info from data-* attributes
