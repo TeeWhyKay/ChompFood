@@ -2,14 +2,14 @@ import { post } from "jquery";
 import { csrfToken } from "@rails/ujs";
 
 const postOptions = {
-        method: 'POST',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfToken()
-        },
-        body: window.localStorage.order
-      };
+  method: 'POST',
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "X-CSRF-Token": csrfToken()
+  },
+  body: window.localStorage.order
+};
 
 const initCart = () => {
   const cart = document.querySelector('#cart');
