@@ -35,12 +35,19 @@ const initCart = () => {
 };
 
 const renderCartItems = (data, cart) => {
-  const cartItems = cart.querySelector('.card-items')
+  const cartItems = cart.querySelector('.card-items');
+
+  const currentRestaurant = data.items[0].restaurant;
+
   data.items.forEach((item) => {
     cartItems.innerHTML += `
     <p> ${item.dishName} - Price: $${item.dishPrice.cents / 100} </p>
     `
   });
+
+  const checkoutRestaurantName = cart.querySelector('.checkout-restaurant-name');
+  checkoutRestaurantName.innerText = currentRestaurant;
+
   cartItems.insertAdjacentHTML('beforeend', `<p>Total: $${data.total}</p>`)
 };
 
