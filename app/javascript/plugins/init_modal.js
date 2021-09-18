@@ -14,7 +14,6 @@ const initModal = () => {
       // add order item directly to it
       const orderArray = JSON.parse(window.localStorage.order);
       const orderInCart = findOrderInCart(orderItem.dishId, orderArray);
-
       // if the new quantity is more than 0, update instead of make new
       if (orderItem.quantity > 0) {
       // if orderItem.id is in the order
@@ -50,14 +49,13 @@ const initModal = () => {
       // get special instructions
       const instructions = document.querySelector('#special-instructions').value;
 
-      // if quantity is not invalid (like negative), proceed as normal
-
       const orderItem = {
         restaurant: currentRestaurant,
         dishId: currentDishId,
         quantity: quantity,
         instructions: instructions
       }
+
       writeToLocalStorage(orderItem)
       // when add to cart is clicked and success, add "show" to exampleModal class
       modal.classList.remove('show');
