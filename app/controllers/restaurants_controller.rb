@@ -7,8 +7,8 @@ class RestaurantsController < ApplicationController
     coordinates = retrieve_coordinates(location)
 
     if params[:query].present?
-      nearby_restaurants = Restaurant.near(coordinates, 5, units: :km) ? Restaurant.near(coordinates, 5, units: :km) : Restaurant.near('Singapore', 10, units: :km)
-      @restaurants = Restaurant.search_by_name_and_address(params[:query]) + nearby_restaurants
+      nearby_restaurants = Restaurant.near(coordinates, 5, :order => :distance) ? Restaurant.near(coordinates, 5, :order => :distance) : Restaurant.near('Singapore', 10, :order => :distance)
+      @restaurants = nearby_restaurants + Restaurant.search_by_name_and_address(params[:query])
     else
       @restaurants = Restaurant.all
     end
