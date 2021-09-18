@@ -15,15 +15,21 @@ Restaurant.destroy_all
 puts "seeding db with restaurants"
 apikey = "ytxKCmRhV2kPY8fEpKXN63SuuQSkVmPw"
 url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&language=en&apikey=#{apikey}"
+count = 0
 loop do
+  count += 1
   address_serialized = URI.open(url).read
   address_parsed = JSON.parse(address_serialized)
-  nextToken = address_parsed["nextToken"]
-  puts "next token is: #{nextToken}"
+  next_token = address_parsed["nextToken"]
+  puts "next token is: #{next_token}"
   length_of_results = address_parsed["data"]["results"].length
   length_of_results.times do |index|
-    address_street = address_parsed["data"]["results"][index]["address"]
-    full_address = "#{address_street["block"]} #{address_street["streetName"]}, Singapore"
+    address = address_parsed["data"]["results"][index]["address"]
+    full_address = "
+    #{address['block']}
+    #{address['streetName']}
+    #{address['floorNumber']}-#{address['unitNumber']}
+    #{address['buildingName']} #{address['postalCode']}, Singapore"
     time = address_parsed["data"]["results"][index]["businessHour"]
     if time.empty?
       opening_time = ["10:00", "10:30", "11:00"].sample
@@ -45,8 +51,9 @@ loop do
     )
     puts "seeded #{address_parsed["data"]["results"][index]["name"]}"
   end
-  break if nextToken == ""
-  url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&nextToken=#{nextToken}&language=en&apikey=#{apikey}"
+  break if next_token==""
+  # break if count==5
+  url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&nextToken=#{next_token}&language=en&apikey=#{apikey}"
 end
 puts "seeding restaurant completed"
 
