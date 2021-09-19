@@ -7,7 +7,6 @@ class FoodOrdersController < ApplicationController
   end
 
   def show
-    
   end
 
   def cart_info
