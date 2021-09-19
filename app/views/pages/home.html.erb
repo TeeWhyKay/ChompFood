@@ -26,26 +26,29 @@
       <% end %>
     </ol>
     <div class="carousel-inner">
-      <% link_to @restaurants.first.name, restaurant_path(@restaurants.first) %>
       <% @restaurant_pages.each_with_index do |page, index| %>
         <div class="carousel-item <%= index == 0 ? "active" : "" %>">
           <div class="row">
             <% page.each do |restaurant| %>
-              <div class="col-3">
-                <div class="card-category"
-                  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "https://source.unsplash.com/random/300x300?food&sig=#{rand(1..10)}" %>)">
-                </div>
-                <div class="m-3">
-                  <div class="card-name"><h6><%= link_to restaurant.name %></h6></div>
-                  <% unchecked_stars = (5 - restaurant.rating).to_i %>
-                  <% restaurant.rating.times do |star| %>
-                    <span class="fa fa-star checked"></span>
-                  <% end %>
-                  <% unchecked_stars.times do |star| %>
-                    <span class="fa fa-star"></span>
-                  <% end %>
-                  <p><%= restaurant.cuisine %></p>
-                </div>
+              <%= link_to restaurant_path(restaurant) do %>
+                <div class="col-3">
+                  <div class="card-category"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "https://source.unsplash.com/random/300x300?food&sig=#{rand(1..10)}" %>)">
+                  </div>
+                  <div class="my-3">
+                    <div class="card-name">
+                      <h6><strong><%= restaurant.name %></strong></h6>
+                    </div>
+                    <% unchecked_stars = (5 - restaurant.rating).to_i %>
+                    <% restaurant.rating.times do |star| %>
+                      <span class="fa fa-star checked"></span>
+                    <% end %>
+                    <% unchecked_stars.times do |star| %>
+                      <span class="fa fa-star"></span>
+                    <% end %>
+                    <p class="text-muted"><%= restaurant.cuisine %></p>
+                  </div>
+                <% end %>
               </div>
             <% end %>
           </div>
