@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   def index
     # there are might be repeats, so we need a way to prevent adding repeats to the results
     location = params[:location]
-    coordinates = retrieve_coordinates(location)
+    coordinates = retrieve_coordinates(location) unless location.nil?
 
     if params[:query].present?
       nearby_restaurants = Restaurant.near(coordinates, 5, :order => :distance) ? Restaurant.near(coordinates, 5, :order => :distance) : Restaurant.near('Singapore', 10, :order => :distance)
