@@ -44,7 +44,7 @@ const initModal = () => {
       // else, start it & add item
       window.localStorage.order = JSON.stringify([orderItem]);
     }
-    // ! Turn this off in production
+    // ! Turn this OFF in production
     // console.log(window.localStorage.order);
   };
 
