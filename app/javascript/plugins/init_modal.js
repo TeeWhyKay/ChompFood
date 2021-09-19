@@ -39,6 +39,8 @@ const initModal = () => {
           orderArray.push(orderItem);
           window.localStorage.order = JSON.stringify(orderArray);
         }
+      } else if (orderItem.quantity == 0) {
+        console.log(orderInCart);
       }
     } else {
       // else, start it & add item
