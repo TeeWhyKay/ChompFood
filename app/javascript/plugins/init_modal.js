@@ -2,17 +2,6 @@ const initModal = () => {
   const modal = document.querySelector('#exampleModal');
 
   /**
-   * Invalid quantity display
-   */
-  const invalidQuantity = document.querySelector('#invalid-quantity');
-  const showInvalidQuantityMsg = () => {
-    invalidQuantity.innerText = 'Please input a valid amount';
-  };
-  const removeInvalidQuantityMsg = () => {
-    invalidQuantity.innerText = '';
-  };
-
-  /**
    * Cart mechanics
    */
   const findOrderInCart = (dishId, orderArray) => {
@@ -25,27 +14,42 @@ const initModal = () => {
       // add order item directly to it
       const orderArray = JSON.parse(window.localStorage.order);
       const orderInCart = findOrderInCart(orderItem.dishId, orderArray);
-
       // if the new quantity is more than 0, update instead of make new
       if (orderItem.quantity > 0) {
       // if orderItem.id is in the order
         if (orderInCart) {
           orderInCart.quantity = orderItem.quantity;
           orderInCart.instructions = orderItem.instructions;
-          window.localStorage.order = JSON.stringify(orderArray);
+          stringifyToLocalStorage(orderArray);
         } else {
           // else, add to cart normally
           const orderArray = JSON.parse(window.localStorage.order);
           orderArray.push(orderItem);
-          window.localStorage.order = JSON.stringify(orderArray);
+          stringifyToLocalStorage(orderArray);
+        }
+      } else if (orderItem.quantity == 0) {
+        if (orderInCart) {
+          // delete the obj w the same dishId
+          const orderInCartIndex = orderArray.indexOf(orderInCart);
+          orderArray.splice(orderInCartIndex , 1)
+          // if the orders left nothing after deleting the order with input "0" by the user
+          if (orderArray.length == 0) {
+            window.localStorage.clear();
+          } else {
+            stringifyToLocalStorage(orderArray);
+          }
         }
       }
     } else {
       // else, start it & add item
       window.localStorage.order = JSON.stringify([orderItem]);
     }
-    // ! leave this on when testing
+    // ! Turn this OFF in production
     // console.log(window.localStorage.order);
+  };
+
+  const stringifyToLocalStorage = (orderArray) => {
+    window.localStorage.order = JSON.stringify(orderArray);
   };
 
   const initAddToCart = () => {
@@ -55,26 +59,24 @@ const initModal = () => {
     addToCartBtn.addEventListener('click', () => {
       // get id from modal div current dish
       const currentDishId = document.querySelector('.modal').dataset.currentFoodId;
+      const currentRestaurant = document.querySelector('.btn-cart').dataset.restaurantName;
       // get quantity from form
       const quantity = document.querySelector('#food-quantity').value;
       // get special instructions
       const instructions = document.querySelector('#special-instructions').value;
 
-      // if quantity is not invalid (like negative), proceed as normal
-      if (quantity > 0) {
-        removeInvalidQuantityMsg();
-        const orderItem = {
-          dishId: currentDishId,
-          quantity: quantity,
-          instructions: instructions
-        }
-        writeToLocalStorage(orderItem)
-        // when add to cart is clicked and success, add "show" to exampleModal class
-        modal.classList.remove('show');
-      } else {
-        showInvalidQuantityMsg();
+      const orderItem = {
+        "restaurant": currentRestaurant,
+        "dishId": currentDishId,
+        "quantity": quantity,
+        "instructions": instructions
       }
 
+      writeToLocalStorage(orderItem)
+      // when add to cart is clicked and success, add "show" to exampleModal class
+      modal.classList.remove('show');
+      // ! Turn this ON in production. This is needed else the cart won't show until you refresh the page once
+      location.reload();
     })
 
   };
@@ -98,14 +100,12 @@ const initModal = () => {
 
     if (modal) {
       $('#exampleModal').on('show.bs.modal', function (event) {
-        removeInvalidQuantityMsg();
 
         var button = $(event.relatedTarget) // Button that triggered the modal
         var foodName = button.data('food-name') // Extract info from data-* attributes
         var foodPrice = button.data('food-price')
         var foodId = button.data('food-id')
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
         var modal = $(this)
         modal.find('.modal-title').text(foodName)
         modal.find('.modal-price').text('S$' + foodPrice)

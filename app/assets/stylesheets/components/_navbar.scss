@@ -17,3 +17,16 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-brand {
+  color: rgba(255, 255, 255, 0.87) !important;
+  font-size: 35px;
+}
+
+a.navbar-brand {
+  font-family: Sigmar One, sans-serif;
+}
+
+.nav-link {
+  margin: -5px;
+}

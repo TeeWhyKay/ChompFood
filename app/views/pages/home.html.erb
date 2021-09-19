@@ -1,5 +1,5 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.jen-eats.com/tanglin/images/restaurants-and-bars/banner.jpg);">
-  <div class="container d-flex flex-md-column justify-content-start">
+  <div class="container d-flex flex-md-column justify-content-start mt-5">
     <h1 class="py-2">ChompFood</h1>
     <p><strong>Crave it? Chomp it.</strong></p>
     <%= simple_form_for :search, url: restaurants_path, method: :get do |f| %>
@@ -13,8 +13,11 @@
     <% end %>
   </div>
 </div>
+
 <div class="container my-5">
-  <h1>ChompFood Promos in <strong style="color: #00b14f">Singapore</strong></h1>
+  <div class="pb-5">
+    <h1>ChompFood Promos in <strong style="color: #00b14f">Singapore</strong></h1>
+  </div>
 
   <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
     <ol class="carousel-indicators d-none">
@@ -27,10 +30,25 @@
         <div class="carousel-item <%= index == 0 ? "active" : "" %>">
           <div class="row">
             <% page.each do |restaurant| %>
-              <div class="col-3">
-                <div class="card-category caro-text" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "https://source.unsplash.com/random/300x300?food&sig=#{rand(1..10)}" %>)">
-                  <p style="text-align: center; text-decoration: none"><%= link_to restaurant.name, restaurant_path(restaurant), style:"color: white" %><p>
-                </div>
+              <%= link_to restaurant_path(restaurant) do %>
+                <div class="col-3">
+                  <div class="card-category"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "https://source.unsplash.com/random/300x300?food&sig=#{rand(1..10)}" %>)">
+                  </div>
+                  <div class="my-3">
+                    <div class="card-name">
+                      <h6><strong><%= restaurant.name %></strong></h6>
+                    </div>
+                    <% unchecked_stars = (5 - restaurant.rating).to_i %>
+                    <% restaurant.rating.times do |star| %>
+                      <span class="fa fa-star checked"></span>
+                    <% end %>
+                    <% unchecked_stars.times do |star| %>
+                      <span class="fa fa-star"></span>
+                    <% end %>
+                    <p class="text-muted"><%= restaurant.cuisine %></p>
+                  </div>
+                <% end %>
               </div>
             <% end %>
           </div>
@@ -47,9 +65,3 @@
     @Chomp 2021
   </div>
 </div>
-
-<script>
-  var elmnt = document.querySelector(".banner");
-  var x = elmnt.scrollLeft;
-  var y = elmnt.scrollTop;
-</script>

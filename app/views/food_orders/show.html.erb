@@ -1,19 +1,24 @@
 <%# ------------ if cart is empty %>
 
-
-<h1 class="no-items d-none cart-title text-muted text-center">Your cart is empty</h1>
-
+<div class="empty-cart-container no-items d-none">
+  <h1 class="cart-title text-muted">Your cart is empty</h1>
+</div>
 
 <%#  ----------- when there is something in the cart %>
 
 <div id="cart" class="d-none" style="background-color: white">
-  <div class="container py-3">
-    <div class="card-items">
-      <h1 class="mt-3"> Restaurant name </h1>
-      <p> Food items</p>
+
+  <div style="background-color: white">
+    <div class="container py-3">
+      <h1 class="mt-3">Last Step - Checkout</h1>
+      <p class="checkout-restaurant-name"></p>
     </div>
-      <%# ------------------- PLACEHOLDER BUTTON, FOR STRIPE %>
-      <%# <p class="btn btn-primary btn block">Submit Order</p> %>
-      <%= render "create_order" %>
+  </div>
+
+  <div class="card mx-auto m-3" style="width: 30rem;">
+    <div class="card-body card-items">
+      <%# Food name and Food price %>
     </div>
+    <%= render "create_order" %>
+  </div>
 </div>

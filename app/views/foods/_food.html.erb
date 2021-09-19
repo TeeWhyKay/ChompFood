@@ -11,21 +11,24 @@
           <% end %>
         </div>
         <div class="d-flex flex-column">
-          <div class="card-details p-3">
+          <div class="card-details p-1">
             <h4><strong><%=h truncate(food.name, length: 15) %></strong></h4>
             <p><%=h truncate(food.description, length: 70) %></p>
           </div>
 
-          <div class="d-flex justify-content-center">
+          <div class="text-right pr-3">
             <button
+
               id="open-cart-option-btn"
               class="btn btn-primary btn-cart w-75 mt-1"
+
               data-toggle="modal"
               data-target="#exampleModal"
+              data-restaurant-name="<%= food.restaurant.name%>"
               data-food-name="<%= food.name%>"
               data-food-price="<%= food.price%>"
               data-food-id="<%= food.id%>">
-              Add to cart</button>
+              <i class="fas fa-cart-plus"></i></button>
           </div>
         </div>
       </div>
@@ -49,9 +52,9 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="food-name" class="col-form-label">Quantity:</label>
-            <input type="number" class="form-control" id="food-quantity">
-            <p id="invalid-quantity" style="color: red; font-size: 12px;"></p>
+            <label for="food-name" class="col-form-label">Quantity: <span class="text-muted">(0 to delete)</span></label>
+            <input type="number" class="form-control" id="food-quantity" min="0" max="99">
+            <p style="color: red; font-size: 12px;"></p>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Special Request:</label>
@@ -61,7 +64,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-modal">Add to Cart</button>
+        <button type="button" class="btn btn-primary btn-modal" data-dismiss="modal">Add to Cart</button>
       </div>
     </div>
   </div>

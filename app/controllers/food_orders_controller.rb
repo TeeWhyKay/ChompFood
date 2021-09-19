@@ -12,9 +12,10 @@ class FoodOrdersController < ApplicationController
 
   def cart_info
     total = 0
+
     order_params.each do |item|
-      food = Food.find(item['dishId'])
-      total += food.price.fractional.fdiv(100) * item['quantity'].to_i
+      food = Food.find(item["dishId"])
+      total += food.price.fractional.fdiv(100) * item["quantity"].to_i
       item.merge!({ dishPrice: food.price, dishName: food.name })
     end
 
@@ -23,6 +24,8 @@ class FoodOrdersController < ApplicationController
     end
 
   end
+
+  private
 
   def order_params
     params.permit!["_json"]
