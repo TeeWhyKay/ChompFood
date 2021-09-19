@@ -31,9 +31,10 @@ class PaymentsController < ApplicationController
         quantity: 1
       }],
       mode: 'payment',
-      success_url: "http://localhost:3000/success",
+      success_url: order_success_url,
       cancel_url: cart_url(root_path)
     )
+    order.update(checkout_session_id: session.id)
     redirect_to session.url
   end
 end
