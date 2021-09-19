@@ -18,10 +18,6 @@ class PaymentsController < ApplicationController
       end
     end
 
-    # teddy = Teddy.find(params[:teddy_id])
-    # order  = Order.create!(teddy: teddy, teddy_sku: teddy.sku, amount: teddy.price, state: 'pending', user: current_user)
-    # params["total_price"]
-
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -32,7 +28,7 @@ class PaymentsController < ApplicationController
       }],
       mode: 'payment',
       success_url: order_success_url,
-      cancel_url: cart_url(root_path)
+      cancel_url: cart_url
     )
     order.update(checkout_session_id: session.id)
     redirect_to session.url

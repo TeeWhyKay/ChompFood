@@ -3,12 +3,9 @@ class FoodOrdersController < ApplicationController
   # create a create for adding into food orders
 
   def index
-    # @food_order = 2
   end
 
   def show
-    # @order = Order.last
-    # @money = Food.last.price_cents
   end
 
   def cart_info
