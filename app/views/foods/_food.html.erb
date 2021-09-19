@@ -24,6 +24,7 @@
 
               data-toggle="modal"
               data-target="#exampleModal"
+              data-restaurant-name="<%= food.restaurant.name%>"
               data-food-name="<%= food.name%>"
               data-food-price="<%= food.price%>"
               data-food-id="<%= food.id%>">
@@ -51,9 +52,9 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="food-name" class="col-form-label">Quantity:</label>
-            <input type="number" class="form-control" id="food-quantity">
-            <p id="invalid-quantity" style="color: red; font-size: 12px;"></p>
+            <label for="food-name" class="col-form-label">Quantity: <span class="text-muted">(0 to delete)</span></label>
+            <input type="number" class="form-control" id="food-quantity" min="0" max="99">
+            <p style="color: red; font-size: 12px;"></p>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Special Request:</label>
@@ -63,7 +64,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-modal">Add to Cart</button>
+        <button type="button" class="btn btn-primary btn-modal" data-dismiss="modal">Add to Cart</button>
       </div>
     </div>
   </div>

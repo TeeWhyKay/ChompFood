@@ -29,12 +29,14 @@ import "bootstrap";
 import { initModal } from '../plugins/init_modal';
 import { initCart } from '../plugins/init_cart';
 import { initLocation } from '../plugins/init_location';
+import { initLogout } from '../plugins/init_logout';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initModal();
   initCart();
   initLocation();
+  initLogout();
 });
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
