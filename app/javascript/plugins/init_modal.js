@@ -20,20 +20,36 @@ const initModal = () => {
         if (orderInCart) {
           orderInCart.quantity = orderItem.quantity;
           orderInCart.instructions = orderItem.instructions;
-          window.localStorage.order = JSON.stringify(orderArray);
+          stringifyToLocalStorage(orderArray);
         } else {
           // else, add to cart normally
           const orderArray = JSON.parse(window.localStorage.order);
           orderArray.push(orderItem);
-          window.localStorage.order = JSON.stringify(orderArray);
+          stringifyToLocalStorage(orderArray);
+        }
+      } else if (orderItem.quantity == 0) {
+        if (orderInCart) {
+          // delete the obj w the same dishId
+          const orderInCartIndex = orderArray.indexOf(orderInCart);
+          orderArray.splice(orderInCartIndex , 1)
+          // if the orders left nothing after deleting the order with input "0" by the user
+          if (orderArray.length == 0) {
+            window.localStorage.clear();
+          } else {
+            stringifyToLocalStorage(orderArray);
+          }
         }
       }
     } else {
       // else, start it & add item
       window.localStorage.order = JSON.stringify([orderItem]);
     }
-    // ! leave this on when testing
+    // ! Turn this OFF in production
     // console.log(window.localStorage.order);
+  };
+
+  const stringifyToLocalStorage = (orderArray) => {
+    window.localStorage.order = JSON.stringify(orderArray);
   };
 
   const initAddToCart = () => {
@@ -59,6 +75,7 @@ const initModal = () => {
       writeToLocalStorage(orderItem)
       // when add to cart is clicked and success, add "show" to exampleModal class
       modal.classList.remove('show');
+      // ! Turn this ON in production. This is needed else the cart won't show until you refresh the page once
       location.reload();
     })
 
