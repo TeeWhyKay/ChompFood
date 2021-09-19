@@ -1,3 +1,5 @@
-<p>Thank you, <%= current_user.email %>! Your order is on the way!</p>
-
-<%= link_to "See more restaurants", restaurants_path, class: 'btn btn-primary btn-block' %>
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 400px;">
+  <h2 class="order-success-text mt-5">Thank you, <%= current_user.email %>!</h2>
+  <h3 class="order-success-subtitle mb-5">Your order is on the way!</h3>
+  <%= link_to "See more restaurants", restaurants_path, class: 'btn btn-primary' %>
+</div>
