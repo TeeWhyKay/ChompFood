@@ -1,7 +1,7 @@
 <div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 400px;">
   <h2 class="order-success-text mt-5">
     Thank you,
-    <% if current_user.first_name.nil? %>
+    <% if current_user.first_name.nil? || current_user.first_name == "" %>
       <%= current_user.email %>!
     <% else %>
       <%= current_user.first_name %>!
