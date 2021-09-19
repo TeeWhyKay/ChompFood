@@ -3,7 +3,7 @@
         <tr>
         <th scope="col">#</th>
         <th scope="col">Time of Order</th>
-        <th scope="col">Details</th>
+        <th scope="col">Restaurant Details</th>
         <th scope="col">Status</th>
         </tr>
     </thead>
@@ -13,7 +13,7 @@
         <tr>
         <th scope="row"><%= num %></th>
         <td><%= (order.created_at + 16.hours).to_s.chomp(' UTC') %></td>
-        <td><%= order.details %></td>
+        <td><%= order.details[0]["restaurant"] %></td>
         <% if order.status == "pending" %>
             <td class="table-warning"><%= order.status.capitalize %></td>
         <% else %>
