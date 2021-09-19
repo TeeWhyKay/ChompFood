@@ -7,6 +7,8 @@ class FoodOrdersController < ApplicationController
   end
 
   def show
+    # @order = Order.last
+    # @money = Food.last.price_cents
   end
 
   def cart_info
