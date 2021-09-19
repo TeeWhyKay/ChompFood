@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.search-form-control .btn {
+.search-form-control .btn.btn-flat {
   position: absolute;
   top: 8px;
   bottom: 8px;
@@ -19,4 +19,12 @@
   border: 1px solid #1EDD88;
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+#search-form {
+  width: 360px;
+  min-height: 398px;
+  background-color: white;
+  border-radius: 4px;
+  padding: 48px 24px 24px;
 }
