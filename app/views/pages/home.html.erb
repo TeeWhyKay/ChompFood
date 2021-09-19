@@ -35,7 +35,7 @@
                   style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= "https://source.unsplash.com/random/300x300?food&sig=#{rand(1..10)}" %>)">
                 </div>
                 <div class="m-3">
-                  <h6><%= link_to restaurant.name %></h6>
+                  <div class="card-name"><h6><%= link_to restaurant.name %></h6></div>
                   <% unchecked_stars = (5 - restaurant.rating).to_i %>
                   <% restaurant.rating.times do |star| %>
                     <span class="fa fa-star checked"></span>
