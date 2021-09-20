@@ -63,7 +63,6 @@ const activateSubmitBtn = (cart) => {
       .then(res => {
         if (res.status == 200) {
           window.localStorage.clear();
-          window.location.href = '/success';
         }
       })
   })

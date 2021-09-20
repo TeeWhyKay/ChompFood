@@ -3,7 +3,6 @@ class FoodOrdersController < ApplicationController
   # create a create for adding into food orders
 
   def index
-    # @food_order = 2
   end
 
   def show
