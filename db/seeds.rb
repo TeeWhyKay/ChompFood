@@ -12,6 +12,19 @@ puts "clearing db"
 Food.destroy_all
 Restaurant.destroy_all
 
+def insert_food_items(restaurant)
+  5.times do
+    fooditem = Food.new(
+      name:       Faker::Food.dish,
+      description:    Faker::Food.description,
+      price: rand(0...10.0).round(2),
+      photo_url: "https://source.unsplash.com/random/300x200?food&sig=#{rand(1..100)}"
+    )
+    fooditem.restaurant = restaurant
+    fooditem.save!
+  end
+end
+
 puts "seeding db with restaurants"
 apikey = "ytxKCmRhV2kPY8fEpKXN63SuuQSkVmPw"
 url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&language=en&apikey=#{apikey}"
@@ -38,7 +51,7 @@ loop do
       opening_time = time.first["openTime"]
       closing_time = time.first["closeTime"]
     end
-    Restaurant.create(
+    restaurant = Restaurant.create(
       name: address_parsed["data"]["results"][index]["name"],
       address: full_address,
       longitude: address_parsed["data"]["results"][index]["location"]["longitude"],
@@ -49,42 +62,28 @@ loop do
       rating: address_parsed["data"]["results"][index]["rating"],
       cuisine: address_parsed["data"]["results"][index]["cuisine"]
     )
+    insert_food_items(restaurant)
     puts "seeded #{address_parsed["data"]["results"][index]["name"]}"
   end
   break if next_token==""
-  # break if count==5
+  # break if count==1
   url = "https://tih-api.stb.gov.sg/content/v1/search/all?dataset=food_beverages&nextToken=#{next_token}&language=en&apikey=#{apikey}"
 end
 puts "seeding restaurant completed"
 
+first_restaurant = Restaurant.first
+first_restaurant.promo_status = 1
+first_restaurant.save!
 
-
-puts 'Creating 10 fake fooditems...'
-10.times do
+puts 'Creating 7 fake fooditems for the first restaurant...'
+7.times do
   fooditem = Food.new(
-    name:       Faker::Food.dish,
-    description:    Faker::Food.description,
+    name: Faker::Food.dish,
+    description: Faker::Food.description,
     price: rand(0...10.0).round(2),
     photo_url: "https://source.unsplash.com/random/300x200?food&sig=#{rand(1..100)}"
   )
   fooditem.restaurant = Restaurant.first
   fooditem.save!
 end
-puts 'Food items created!'
-
-last_restaurant = Restaurant.last
-last_restaurant.promo_status = 1
-last_restaurant.save!
-
-puts 'Creating 7 fake fooditems for the last restaurant...'
-7.times do
-  fooditem = Food.new(
-    name:       Faker::Food.dish,
-    description:    Faker::Food.description,
-    price: rand(0...10.0).round(2),
-    photo_url: "https://source.unsplash.com/random/300x200?food&sig=#{rand(1..100)}"
-  )
-  fooditem.restaurant = Restaurant.last
-  fooditem.save!
-end
-puts 'Food items created for last restaurant!'
+puts 'Promo Food items created for first restaurant!'
