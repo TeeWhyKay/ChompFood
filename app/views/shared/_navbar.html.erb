@@ -1,6 +1,6 @@
 <div class="container">
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-    <% if current_page?(controller: 'pages', action: 'home') %>
+    <% if current_page? root_path %>
       <%= link_to "/", class: "navbar-home" do %>
         ChompFood
       <%end%>
