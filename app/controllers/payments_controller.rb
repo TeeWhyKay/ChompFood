@@ -18,10 +18,6 @@ class PaymentsController < ApplicationController
       end
     end
 
-    # teddy = Teddy.find(params[:teddy_id])
-    # order  = Order.create!(teddy: teddy, teddy_sku: teddy.sku, amount: teddy.price, state: 'pending', user: current_user)
-    # params["total_price"]
-
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
