@@ -28,7 +28,6 @@ class RestaurantsController < ApplicationController
       else
         return location.split(',')
       end
-      raise
     else
       return [1.2897, 103.8501]
     end
