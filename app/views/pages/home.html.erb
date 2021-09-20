@@ -1,9 +1,10 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.jen-eats.com/tanglin/images/restaurants-and-bars/banner.jpg);">
   <div class="container d-flex flex-column justify-content-center mt-5">
     <div id="search-form">
-      <% if Time.now.hour >= 18 && Time.now.hour <= 23 %>
+    <%= request.location.country %>
+      <% if Time.now.in_time_zone('Singapore').hour >= 18 && Time.now.in_time_zone('Singapore').hour <= 23 %>
         <h3>Good Evening</h3>
-      <% elsif Time.now.hour >= 12%>
+      <% elsif Time.now.in_time_zone('Singapore').hour >= 12%>
         <h3>Good Afternoon</h3>
       <% else %>
         <h3>Good Morning</h3>
