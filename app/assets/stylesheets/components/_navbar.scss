@@ -22,6 +22,11 @@
   color: white;
   font-family: Sigmar One, sans-serif;
   font-size: 35px;
+  text-decoration: none;
+}
+
+a:hover.navbar-home {
+  color: white;
 }
 
 .navbar-color {
@@ -31,8 +36,16 @@
   font-family: Sigmar One, sans-serif;
 }
 
-.nav-link {
-  margin: -5px;
-  color: rgba(236, 228, 228, 0.747);
-  text-shadow: 4px 3px #f00707;
+.nav-item {
+  border-radius: 5px;
+  background-color: white;
+  margin-left: 15px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(7, 7, 7);
+}
+
+.avatar {
+  padding-bottom: none;
 }
